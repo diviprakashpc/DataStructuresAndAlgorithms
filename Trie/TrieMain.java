@@ -1,6 +1,6 @@
 package Trie;
 
-public class Main {
+public class TrieMain {
 	public static void main(String[] args) {
 		Trie root = new Trie();
 		root.add("note");

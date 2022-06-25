@@ -1,8 +1,26 @@
 package graphsPepcoding;
 
 import java.util.*;
+
 //Node class defined outside. Contains value and weight.
 public class Djikstra {
+	static class Node implements Comparable<Node> {
+		int value;
+		int weight;
+
+		public Node(int value, int weight) {
+			super();
+			this.value = value;
+			this.weight = weight;
+		}
+
+		@Override
+		public int compareTo(Node o) {
+			// TODO Auto-generated method stub
+			return this.weight - o.weight;
+		}
+
+	}
 
 	public static void shortestPathInUnitWeightUndirectedGraph(ArrayList<ArrayList<Integer>> adj, int n, int src) {
 		// We would use BFS

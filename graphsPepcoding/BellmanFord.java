@@ -2,21 +2,21 @@ package graphsPepcoding;
 
 import java.util.*;
 
-class Edge {
-	int u;
-	int v;
-	int wt;
+class BellmanFord {
+	static class Edge {
+		int u;
+		int v;
+		int wt;
 
-	public Edge(int u, int v, int wt) {
-		super();
-		this.u = u;
-		this.v = v;
-		this.wt = wt;
+		public Edge(int u, int v, int wt) {
+			super();
+			this.u = u;
+			this.v = v;
+			this.wt = wt;
+		}
+
 	}
 
-}
-
-class BellmanFord {
 	static void bellmanFord(ArrayList<Edge> edges, int N, int src) {
 		int dist[] = new int[N];
 		for (int i = 0; i < N; i++)
