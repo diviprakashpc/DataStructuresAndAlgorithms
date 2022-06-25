@@ -1,25 +1,7 @@
 package graphsPepcoding;
 
 import java.util.*;
-
-class Node implements Comparable<Node> {
-	int value;
-	int weight;
-
-	public Node(int value, int weight) {
-		super();
-		this.value = value;
-		this.weight = weight;
-	}
-
-	@Override
-	public int compareTo(Node o) {
-		// TODO Auto-generated method stub
-		return this.weight - o.weight;
-	}
-
-}
-
+//Node class defined outside. Contains value and weight.
 public class Djikstra {
 
 	public static void shortestPathInUnitWeightUndirectedGraph(ArrayList<ArrayList<Integer>> adj, int n, int src) {
@@ -67,7 +49,6 @@ public class Djikstra {
 			System.out.print("Shortest distance for node " + i + " is " + distance[i] + " using Djikstra algo");
 			System.out.println();
 		}
-		
 
 	}
 
@@ -87,7 +68,6 @@ public class Djikstra {
 		adj1.get(1).add(3);
 		adj1.get(1).add(0);
 		adj1.get(1).add(2);
-		
 
 		adj1.get(2).add(1);
 		adj1.get(2).add(6);
@@ -106,7 +86,6 @@ public class Djikstra {
 		adj1.get(6).add(7);
 		adj1.get(6).add(5);
 		adj1.get(6).add(8);
-		
 
 		adj1.get(7).add(8);
 		adj1.get(7).add(6);
@@ -131,9 +110,9 @@ public class Djikstra {
 
 		adj.get(2).add(new Node(4, 1));
 		adj.get(4).add(new Node(2, 1));
- 
-		 shortestPathInUnitWeightUndirectedGraph(adj1, n1, 0);
-		 DjikstraAlgorithm(adj, n, 0);
+
+		shortestPathInUnitWeightUndirectedGraph(adj1, n1, 0);
+		DjikstraAlgorithm(adj, n, 0);
 
 	}
 }
