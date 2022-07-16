@@ -1,0 +1,17 @@
+1)Steps for recursion:-
+	-Express in terms of indexes and required parameter(like target or 	something)
+	-Explore all possibilites
+	-Work on those possibilites.
+
+2)Steps for DP:-
+   - Copy the basecase
+   - Write changing parameters in nested loops and in bottom up fashion.
+   -Copy the recourrence as it is.
+
+
+
+3)All the questions where we need dp[i-1][j] for calculating dp[i][j], we can optimize space with prev and curr array.An example on how to do it is written in 0/1 knapsack.
+
+4)In questions with infinite supply , when we take an element and call recursio. We keep the index same because since it is infinite supply we may need it again. Ex. Unbounded Knapsack
+
+5)Meri tbiyt thik nahi lag rahi. Rod cutting problem 1.5 ghante ki thi , maai darta tha kitna..aaj wo bina kisi ke help se 15minute mei poori krdi. Thanks to striver for the training.

@@ -1,11 +1,12 @@
-package DpStandardQuestions;
+package Dp_On_Subsequences;
 
+//verified over coding ninjas. I am doing bottom up recursion and bottom up DP here.
 import java.util.*;
 
 public class SubsetSumEqualsToTarget {
 
 	public static void main(String args[]) {
-		int arr[] = { 1, 2, 3,  };
+		int arr[] = { 1, 2, 3, };
 		int k = 4;
 		int n = arr.length;
 		if (subsetSumToKRecursive(arr, k))
@@ -26,6 +27,8 @@ public class SubsetSumEqualsToTarget {
 	}
 
 	private static int subsetSumToKTabulation(int[] arr, int target) {
+		// For tabulation:- (1) Think about basecase (2) Think of changing parameters
+		// (states) and Write them in nested loops (3) Copy the recourrence.
 		// TODO Auto-generated method stub
 		int[][] dp = new int[arr.length + 1][target + 1];
 		dp[0][0] = 1;
@@ -36,9 +39,9 @@ public class SubsetSumEqualsToTarget {
 				else if (i == 0)
 					dp[i][j] = 0;
 				else if (j == 0)
-					dp[i][j] = 0;
+					dp[i][j] = 1;
 				else {
-					int take = (j >= arr[i-1]) ? dp[i - 1][j - arr[i-1]] : 0;
+					int take = (j >= arr[i - 1]) ? dp[i - 1][j - arr[i - 1]] : 0;
 					int nottake = dp[i - 1][j];
 					dp[i][j] = take | nottake;
 				}
