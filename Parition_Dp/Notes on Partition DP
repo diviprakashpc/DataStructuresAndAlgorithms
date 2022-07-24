@@ -1,0 +1,7 @@
+  In partition dp,
+  ->You solve in particular way ,you get some answer and solve in other way you get a different answer. And then you perform some opertions on those answers like giving min of out of them or else.
+  
+  ->Therefore different partitions produce different answers and we perform logical operations on those answers.
+  Ex: AxBxCxD multiplication of matrices gives different total multiplications on diffrent associations.
+  
+  

@@ -4,7 +4,7 @@
 
 3)All the questions where we need dp[i-1][j] for calculating dp[i][j], we can optimize space with prev and curr array.An example on how to do it is written in 0/1 knapsack.
 
-4) Negative index means end of string. Since we can't store in negative indexes , therfore we shift indexes by 1 forward.
+4) Negative index means end of string. Since we can't store in negative indexes , therfore we shift indexes by 1 forward.(1- based indexing)
 
 5)Steps for recursion:-
 	-Express in terms of indexes and required parameter(like target or 	something)
@@ -13,5 +13,9 @@
 
 6)Steps for DP:-
    - Copy the basecase
-   - Write changing parameters in nested loops and in bottom up fashion.
+   - Write changing parameters in nested loops and in opposite(opposite to recursion) fashion.
    -Copy the recourrence as it is.
+   
+   
+   
+   Moral of the story : DP on strings = learn LCS by heart , Kudos to your efforts.

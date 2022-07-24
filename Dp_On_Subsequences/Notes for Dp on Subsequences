@@ -5,7 +5,7 @@
 
 2)Steps for DP:-
    - Copy the basecase
-   - Write changing parameters in nested loops and in bottom up fashion.
+   - Write changing parameters in nested loops and in opposite(opposite) fashion.
    -Copy the recourrence as it is.
 
 

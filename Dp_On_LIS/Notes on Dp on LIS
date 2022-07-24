@@ -1,0 +1,8 @@
+1) 2D array for LIS is diificult to understand, go for 1d array approach or binary search approach.
+
+
+2)Subset is  diffrence from subsequence. Subsequence orignal order is maintained. In subset random order is legal.
+
+Also when question that has LIS use in it asks for subsets instead of subsequence, sort the array first.
+
+subsequence --> Ordered subset
