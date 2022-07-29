@@ -1,0 +1,30 @@
+Notes for Variable Size Sliding Window:
+
+Sample Question :
+Given an array containing N positive integers and an integer K. Your task is to find the length of the longest Sub-Array with sum of the elements equal to the given value K.(condition)
+
+
+Diffrence between fixed size SD and variable size SD:
+
+Fixed  --  
+1)K(window size)(fixed) given and we need to maximize/minimize a condition(sum or something else).
+
+2)We obtain a possible answer candidate when window size give in question hits i.e. j-i+1 = k.
+
+3)In fixed SD , when we a hit the window size and obtain a possible answer, on moving the window further keeps giving us answer candidates. The window never shrinks or increases therefore making it very easy to collect answer candidates.
+
+Variable -- 
+1)Condition given(fixed), we need to maximize/minimize k i.e. the window size.
+
+2)We obtain a possible answer candidate when the condition given in question hits.
+
+3)In variable, when condition is hit, the current window size may or may not change. It completely depends on question. And therfore lot of questions are asked on variable SD.
+                       
+(Jrruri nahi h max/min hoga,example diya hai. Aise toh croro chize kr skte hai.)
+
+
+Identification for Variable SD:-
+1)subarray/substring
+2)Condition given like sum or something. And asked the max/min window size(subarray/substring length).
+
+

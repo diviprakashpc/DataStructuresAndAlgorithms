@@ -1,0 +1,35 @@
+Basic structure for vairable size Sliding window:
+
+Comparison:-
+->In fixed we had k as window size and we had two condition i.e when
+j-i+1<k and j-i+1 == k. There was never a case when j-i+1>k.
+
+->In variable we have k as sum( the condition given in question). 
+On moving window it is possible that windowsum<k , windowsum==k and windowsum>k.
+
+
+For the question,
+Given an array containing N positive integers and an integer K. Your task is to find the length of the longest Sub-Array with sum of the elements equal to the given value K.(condition->sum of subarray).
+
+The basic structure would be:-
+
+	int i = 0;
+	int j = 0;
+	while(j<arr.length){
+ 		calculations();
+ 		if(condition<k){
+ 			j++;
+ 		} 	    
+ 		else if(condition==k){
+ 	 	ans <-- calculations
+ 	 	j++;
+ 		}
+ 		else if(condition>k){
+      		while(condition>k){
+       		remove_calculation_for_i();
+        	i++; 
+      		} 
+      		j++;	
+ 		}    
+ 	     
+}

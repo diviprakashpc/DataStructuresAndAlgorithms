@@ -1,0 +1,17 @@
+Basic structure for fixed sliding window:-(Obviously not always true, but true in most cases)
+
+	int i = 0;
+	int j = 0;
+	while(j<str.length()){
+     Do_some_Calculations_here();
+      if(j-i+1<k){
+         j++;
+      }
+      else if(j-i+1==k){
+        Obtain_an_answer_from_the_calculation_done_above();
+        slideTheWindow(i++,j++);
+        Remove_the_effect_of_i_from_the_window();
+      }
+	}
+	
+	Also Number of subarrays possible having fixed window k for array of size n is n-(k-1).	

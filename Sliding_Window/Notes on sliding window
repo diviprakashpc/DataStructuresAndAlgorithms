@@ -1,0 +1,52 @@
+Notes:-
+
+Video1:
+
+1)Origin : - 
+
+[1,2,3,4,5,6]  find subarray of size 3 having maximum sum? 
+
+Ans: BruteForce:-
+     for(int i = 0 ;  i < n ; i++){
+        int sum = 0;
+      for(int j = i ; j < i+3 ; j++){
+       sum+=arr[j];
+       }
+       max = Math.max(sum,max);
+       }
+       
+ How to check if optimization possible?
+ 
+ 1) Is repeatitive work present?
+ Ans: first we iterate and see 1+2+3 and then we increments i.
+ Now we do some 2+3+4 i.e more or less we are again adding 2+3 that we added in first iteration. Therefore 2 + 3 happening twice . 
+ Simialary in third iteration of i we do 3+4+5. We are again calculating 3+4 that we calculated in previous iteration. 
+ Therefore repeatitive work Therefore optimization is possible.
+ 
+ 
+ Optimized sliding window:
+ 
+ Instead we keep a window of size 3. We move window across the array by adding the next element into window and removing the first element of window.
+ 
+ therefore on first iteration sum = 1+2+3 
+ on next iteration we do sum = sum - 1 + 4 = 9
+ on next iteration we do sum - 2 + 5
+ 
+ Therefore for each iteration the window looks like
+ {[1, 2, 3], 4, 5, 6}  -> {1,[2,3,4],5,6} -> {1,2,[3,4,5],6}->{1,2,3,[4,5,6]}
+ we will maintain i and j for starting and ending of window.
+ 
+ *Window will always be continuous.
+ Therefore 
+ 
+ HOW TO IDENTIFY:
+ 
+ arr/string -> subarray/substring -> largest/smallest keyword -> k window size
+ 
+ 
+ Types of sliding window:-
+ 1) Fixed size window
+ 2)Variable size window:-
+ Window size is not given and instead asked ques like largest window or smalled window subjected to a condition and so on.
+ 
+ 
