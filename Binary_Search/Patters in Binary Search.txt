@@ -1,0 +1,1 @@
+1) Mountain Array = > Find the peak element using binary search and then you have increasing on left and dec on right.

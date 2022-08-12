@@ -1,0 +1,8 @@
+Thinking steps in binary search:
+1)Initialize your start and end.
+2) Find what relation would be between arr[mid] and target we want to achieve.
+3)Move start and end accordingly.
+4)Think when loop will break.
+
+
+It is literally not neceassary that the default binary search template works everytime. You need to tweak it to achieve your goal.
