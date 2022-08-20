@@ -1,0 +1,26 @@
+                    MIN OF THE MAXES
+In Estimation Dp, precisely project Estimation Dp we consider "Best(choice) From the worst(luck)".
+
+Example:
+Suppose you are a manager and you have to give task to four employees.
+
+Employeee     Time take in diffrent scenarios
+E1               10,9,2,11,19,22
+E2               11,15,16,13,19
+E3               10,9,4,3,16
+E4               100,90,25,23,7
+
+And you want the "Guaranteed Best time" that the work is completed. This means you need a guarantee that the work will get completed at that time t.
+
+For Guranteee : We assume the worst from the luck. i.e. how much time the employee would take is luck. 
+For Best : We take the best out of the choices i.e we select the employee which has the best worst time.
+
+Worst time ensures that the work will definetly get done.
+
+Therfore in these questions we have :
+1)Choice : We choose the best from the worst options(lucks).
+2)Luck : We expect the worst from all the options.
+
+All summed up we can say we go for : "MIN OF THE MAXES".Infact in base cases too we assume worst luck for us.
+
+Examples : EggDropping Problem ,Game playing.

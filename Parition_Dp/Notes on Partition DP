@@ -4,4 +4,11 @@
   ->Therefore different partitions produce different answers and we perform logical operations on those answers.
   Ex: AxBxCxD multiplication of matrices gives different total multiplications on diffrent associations.
   
+  Ex.MCM,
+  RodCutting problem,
+  Evaluate Boolean Expression to true,
+  Palindrome Partioning,
+  Partition Array for Maximum Sum etc..
   
+  
+  I have solved all questions, next time I solve them again I would write their code here.

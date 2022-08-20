@@ -1,0 +1,49 @@
+It is a sliding window pattern in which we slide the window as per the question, but eventually we realize it 
+sliding the window is not enough and we need to apply recurstion(divide and conquer).
+
+Time complexity generally : O(n^2).
+
+Question:- A string s is nice if, for every letter of the alphabet that s contains, it appears both in uppercase and lowercase. For example, "abABB" is nice because 'A' and 'a' appear, and 'B' and 'b' appear. However, "abA" is not because 'b' appears, but 'B' does not.
+
+Given a string s, return the longest substring of s that is nice. If there are multiple, return the substring of the earliest occurrence. If there are none, return an empty string.
+
+
+Solution:-
+The logic would be create a set and add all characters.
+When we slide the window we are not sure that the character we are adding has both UC and LC in the current substring. But we keep adding because it is possible character for answer as per the set since its UC and LC both present in complete string. 
+
+When we reach a character whoose UC or LC  arn't present in set/string it is our pivot where our sliding window stops.Because it will never be in our answer.
+
+Now is the current string in window the answer? Obv no because our check statement checked that 'a' has both UC and LC in complete string but can't say it ocuurs in both form  in current window substring. Therefore What do we do??
+
+
+WE can't achieve this with sliding window now. Now we apply recursion. We call left side of pivot for ans and right side of pivot for ans. And return accordingly.
+
+ public String longestNiceSubstring(String s) {
+        if(s.length()<=1) return "";
+        Set<Character> set = new HashSet<>();
+        for(int i =0 ; i < s.length() ; i++){
+            set.add(s.charAt(i));
+        }
+        
+        for(int i = 0 ; i < s.length() ; i++){
+            char ch = s.charAt(i);
+           if(set.contains(Character.toUpperCase(ch))&&set.contains(Character.toLowerCase(ch))) continue;
+            else{
+                String prev = longestNiceSubstring(s.substring(0,i));
+                String next = longestNiceSubstring(s.substring(i+1));
+                return (prev.length()>=next.length()) ? prev : next;
+            }
+           
+        }
+         return s;
+    }
+    
+    
+    More questions : 1) Longest Substring with at least k repeating characters. (Code Present in the package)
+    
+
+
+
+
+ 
