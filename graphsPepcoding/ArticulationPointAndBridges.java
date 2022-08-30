@@ -13,6 +13,7 @@ public class ArticulationPointAndBridges {
 
 	public static void dfs(int u, ArrayList<ArrayList<Integer>> graph) {
 		disc[u] = low[u] = time;
+		time++;
 		visited[u] = true;
 		int countforsrc = 0;
 		ArrayList<Integer> nbrs = graph.get(u);
