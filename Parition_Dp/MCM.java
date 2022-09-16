@@ -2,12 +2,28 @@ package Parition_Dp;
 
 public class MCM {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+static int helper(int[] arr, int i, int j){
+    // base condition
+    if(i == j)
+        return 0;   
+    int mini = Integer.MAX_VALUE;
+    // partioning loop
+    for(int k = i; k<= j-1; k++){
+    	int left_count = helper(arr,i,k);
+    	int right_count = helper(arr, k+1,j);
+        int total_count = left_count+ right_count + arr[i-1]*arr[k]*arr[j];
+        mini = Math.min(mini,total_count);    
+    }
+    
+    return mini;
+}
+static int matrixMultiplication(int[] arr, int N){
+    int i =1;
+    int j = N-1;
+    return helper(arr,i,j);   
+}
 
-	}
-
-	static int matrixMultiplication(int N, int arr[]) {
+	static int matrixMultiplicationGapStrategy(int N, int arr[]) {
 		// code here
 		int[][] dp = new int[N - 1][N - 1];
 
@@ -34,5 +50,17 @@ public class MCM {
 
 		return dp[0][dp.length - 1];
 	}
+
+ 
+public static void main(String args[]) {
+	
+	int arr[] = {10, 20, 30, 40, 50};
+	
+	int n = arr.length;
+	
+	System.out.println("The minimum number of operations are "+
+        matrixMultiplication(arr,n));
+	
+}	
 
 }
