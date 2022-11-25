@@ -3,8 +3,10 @@ package SortingAlgos;
 public class Partition {
 
 	public static void main(String args[]) {
-		int[] arr1 = { 7, 6, 4, 3, 9, 10, 11, 14, 2, 3, 5, 6, 8 };
-		int[] arr2 = { 7, 6, 4, 3, 8, 9, 10, 11, 14, 2, 7, 3, 5, 6, 9 };
+		int[] arr1 = { 3,2,1,5,6,4 };
+		int[] arr2 = { 3,2,1,5,6,4 };
+//		int[] arr1 = {3,3,3,4,3,3,3};
+//		int[] arr2 = {3,3,3,4,3,3,3};
 		partition_with_windowmethod(arr1, arr1[arr1.length - 1], 0, arr1.length - 1);
 		// Works if you take pivot as last element and pivot duplicacy is not present.
 		for (int i = 0; i < arr1.length; i++) {

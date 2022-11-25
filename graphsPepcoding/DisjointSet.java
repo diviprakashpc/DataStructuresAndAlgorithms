@@ -5,20 +5,23 @@ import java.util.Scanner;
 public class DisjointSet {
 	int[] parent;
 	int[] rank;
+	int[] size;
 
 	DisjointSet(int n) {
-		parent = new int[n];
-		rank = new int[n];
+		parent = new int[n + 1];
+		rank = new int[n + 1];
+		size = new int[n + 1];
 	}
 
 	public void makeSet(int n) {
 		for (int i = 0; i < n; i++) {
 			parent[i] = i;
 			rank[i] = 0;
+			size[i] = 1;
 		}
 	}
 
-	public void union(int x, int y) {
+	public void union_by_rank(int x, int y) {
 		int lx = find(x);
 		int ly = find(y);
 		if (lx != ly) {
@@ -29,6 +32,20 @@ public class DisjointSet {
 			} else {
 				parent[lx] = ly;
 				rank[ly]++;
+			}
+		}
+	}
+
+	public void union_by_size(int x, int y) {
+		int lx = find(x);
+		int ly = find(y);
+		if (lx != ly) {
+			if (size[lx] > size[ly]) {
+				parent[ly] = lx;
+				size[ly] = size[lx] + size[ly];
+			} else {
+				parent[lx] = ly;
+				size[ly] = size[ly] + size[lx];
 			}
 		}
 	}
@@ -50,7 +67,7 @@ public class DisjointSet {
 		while (m-- > 0) {
 			int u = sc.nextInt();
 			int v = sc.nextInt();
-			dsu.union(u, v);
+			dsu.union_by_rank(u, v);
 		}
 		System.out.println("Dsu created Succesfully");
 	}
