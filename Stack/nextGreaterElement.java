@@ -29,7 +29,7 @@ public class nextGreaterElement {
 		Stack<Integer> st = new Stack<>();
 		int[] res = new int[arr.length];
 		int k = 0;
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = 0; i < arr.length; i++) {	
 			while (st.size() > 0 && st.peek() <= arr[i]) {
 				st.pop();
 			}
@@ -46,5 +46,5 @@ public class nextGreaterElement {
 	//smaller ke liye sign change krdo bas.
 	//previous greater/smaller ke liye 0-> n loop lagao
 	//next greater/smaller ke liye n-1->=0 ka loop lagao.
-
+   // Aur jrruri nahi h element value hi rkhe. Jrrurat pdne pe index bhi rkh skte h . USke liye st.push(i) krenge aur checking mei arr[st.peek()] se check krenge.
 }

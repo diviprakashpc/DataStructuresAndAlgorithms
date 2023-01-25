@@ -22,6 +22,10 @@ public class Partition {
 
 	}
 
+	
+	// 0 - j-1 -> elements smalleer than pivot
+	// j - > i -> elements greater than pivot
+	// rest unknown. need to visit
 	public static void partition_with_windowmethod(int[] arr, int pivot, int start, int end) {
 		int i = start;
 		int j = start;

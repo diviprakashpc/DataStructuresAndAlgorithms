@@ -37,3 +37,6 @@
 /detectCycleWithDSU.class
 /NumberOfProvinces.class
 /NumberOfProvinces$DisjointSet.class
+/PrimsBetter.class
+/PrimsBetter$Solution$Edge.class
+/PrimsBetter$Solution.class
