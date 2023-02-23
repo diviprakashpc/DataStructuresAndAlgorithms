@@ -1,0 +1,60 @@
+COMPARABLE IN JAVA
+
+(a,b) : a is current this object and b is object with which it is getting compared.
+
+
+* Return -1(neg) means a < b.
+*Return +1(pos) means a > b.
+*Return 0 means a == b.
+
+This is understood by java.
+
+*Also to mention default ordering of java is Ascending i.e Smaller -----> Larger.
+
+
+NOW SUPPOSE CASE I :
+
+A) We need to sort in ascending order.
+
+In reality we have given as a < b. So how do we tell java that object a is less than object b . We tell it by returning -1.
+Therefore we write compareTo as:	
+	if(a.some_property < b.some_property){
+    
+     //Then it means object a is smaller than b. Therefore tell java that by returning -1. 
+     //This way java will move a to smaller side i.e left side.(Because of default ordering java only knows smaller -> larger).
+
+	} 
+	
+	else if (a.some_property > b.some_property){
+	   //Then it means object a is larger than b. Therefore tell java that by returning +1. 
+     //This way java will move a to larger side i.e right side.(Because of default ordering java only knows smaller -> larger).
+	
+	}
+	
+	
+B) We need to sort in descending order:
+
+In reality we have given a < b . But now we need to move a to right side.
+Therfore we trick java. We write compareTo as:
+
+
+		if(a.some_property < b.some_property){
+    
+     //Then it means object a is smaller than b. But now tell java that it is greater by returning +1.
+     //This way java will move a to larger side i.e right side.(Because of default ordering java only knows smaller -> larger).
+     //And hence small element will go to right.
+
+	} 
+	
+	else if (a.some_property > b.some_property){
+	   //Then it means object a is larger than b.  But now tell java that it is smaller by returning -1. 
+     //This way java will move a to smaller side i.e left side.(Because of default ordering java only knows smaller -> larger).
+     // And hence larger element will go left.
+	
+	}
+	
+
+
+
+THREFORE -1 return krne pe java current element ko left side dhakelta h and +1 pe right side pe.
+
