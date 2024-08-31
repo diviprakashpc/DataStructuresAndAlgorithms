@@ -149,6 +149,8 @@ public class DjikstraAlgorithm {
 	}
 }
 
+//Time complexity for djikstraForDAG is O( N + M ) where N is no of nodes and m is no of edges
+
 
 ///////  IN GRAPH NODE, NODE_WT DENOTES weight OF EDGE BETWEEN THE RESPECTIVE INDEX(PARENT) AND NODE_VALUE. 
 ////// IN PRIORITY QUEUE PAIR, PAIR_WT DENOTES THE SHORTEST DISTANCE ENCOUNTERED FOR PAIR. PAIR_VALUE DENOTES THE VALUE WE ARE TALKING ABOUT.
