@@ -28,7 +28,7 @@ public class DjikstraAlgorithm {
 		 }
 	}
 	
-	
+	// Djikstra Using Dist Array
 	public static int[] djikstra(int n ,int src, int dest , int[][] edges) {
 		List<List<Node>> graph = new ArrayList<>();
 		for(int i = 0 ; i < n ; i++) graph.add(new ArrayList<>());
@@ -57,17 +57,59 @@ public class DjikstraAlgorithm {
 		}
 		return dist;
 	}
-	
-
+	// Djikstra Without Dist array and only using visited array.
+	public void djikstraUsingVisited(int n , int src, int dest, int[][] edges) {
+		List<List<Node>> graph = new ArrayList<>();
+		for(int i = 0 ; i < n ; i++) graph.add(new ArrayList<>());
+		for(int[] row: edges) {
+			int u = row[0];
+			int v = row[1];
+			int wt = row[2];
+			graph.get(u).add(new Node(v,wt));
+			graph.get(v).add(new Node(u,wt));
+		}
+		
+		boolean[] visited = new boolean[n];
+		
+		visited[src] = true;
+		
+		PriorityQueue<Pair> pq = new PriorityQueue<>();
+		pq.add(new Pair(0, src));
+		
+		while(pq.size() > 0) {
+			Pair rem = pq.remove();
+			if(visited[rem.nodeValue] == true) {
+				continue;
+			}
+			
+			// Here rem.dist will tell us the shortest path to rem.nodeValue. We can do whatever we want with it.
+			if(rem.nodeValue == dest) {
+				// return rem.dist as this will be the  minimum distance to dest from src. Or Do something with it.
+			}
+			
+			visited[rem.nodeValue] = true;
+			
+			for(Node nbr : graph.get(rem.nodeValue)) {
+				if(visited[nbr.value] == false) {
+					pq.add(new Pair(rem.dist + nbr.wt, nbr.value));
+				}
+			}
+			
+		}
+	}
 
 }
 
-//Rest detailed explanation in striver video and notes. I dont think I would forget now .
 
-//Therefore three simple steps for djikstra:
+///////  IN GRAPH NODE, NODE_WT DENOTES weight OF EDGE BETWEEN THE RESPECTIVE INDEX(PARENT) AND NODE_VALUE. 
+////// IN PRIORITY QUEUE PAIR, PAIR_WT DENOTES THE SHORTEST DISTANCE ENCOUNTERED FOR PAIR. PAIR_VALUE DENOTES THE VALUE WE ARE TALKING ABOUT.
+
+//Therefore three simple steps for djikstra ( When doing it with Dist array):
 //	1) Create node{value,wt} , pair{dist,nodeValue}, graph, distance array , priorityQueue<Pair>
 //	2) Add pair for src node and Start Iteration. Remove from top and iterate neighbours of the top. 
 //  3)If distance to reach top + wt of nbr is less than already marked distance of nbr, then update the distance
 //      and add new Pair of {newDist,nbrValue} to priorityQueue.
 //      
-//      return distance array once its empty.
+//      return distance array pq once its empty.
+
+

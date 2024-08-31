@@ -57,7 +57,7 @@ public class Partition {
 		arr[start] = temp;
 		int i = start;
 		int j = end;
-		while (i < j) {
+		while (i <= j) {
 			if (arr[i] < pivot)
 				i++;
 			else if (arr[j] > pivot)
