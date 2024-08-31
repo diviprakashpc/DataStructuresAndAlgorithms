@@ -4,16 +4,18 @@ package graphsPepcoding;
 import java.util.*;
 public class DjikstraAlgorithm {
 	static class Node{
-		int value;
+		int val;
 		int wt;
-		Node(int value, int wt){this.value = value; this.wt = wt;}
+		Node(int val, int wt){this.val = val; this.wt = wt;}
 	}
 	
 	static class Pair implements Comparable<Pair>{
 		int dist;
-		int nodeValue;
-		Pair(int dist, int nodeValue){this.dist = dist; this.nodeValue = nodeValue;}
-		public int compareTo(Pair p) {return this.dist - p.dist;}
+		int val;
+		Pair(int dist, int val){this.dist = dist; this.val = val;}
+		public int compareTo(Pair p) {
+			return this.dist - p.dist;
+		}
 	}
 
 	public static void main(String[] args) {
@@ -47,11 +49,11 @@ public class DjikstraAlgorithm {
 		while(!pq.isEmpty()) {
 			Pair p = pq.remove();
 			int distance = p.dist;
-			int nodeValue = p.nodeValue;
+			int nodeValue = p.val;
 			for(Node nbr : graph.get(nodeValue)) {
-				if(dist[nbr.value]> distance + nbr.wt) {
-					dist[nbr.value] = distance + nbr.wt;
-					pq.add(new Pair(dist[nbr.value],nbr.value));
+				if(dist[nbr.val]> distance + nbr.wt) {
+					dist[nbr.val] = distance + nbr.wt;
+					pq.add(new Pair(dist[nbr.val],nbr.val));
 				}
 			}
 		}
@@ -78,20 +80,20 @@ public class DjikstraAlgorithm {
 		
 		while(pq.size() > 0) {
 			Pair rem = pq.remove();
-			if(visited[rem.nodeValue] == true) {
+			if(visited[rem.val] == true) {
 				continue;
 			}
 			
 			// Here rem.dist will tell us the shortest path to rem.nodeValue. We can do whatever we want with it.
-			if(rem.nodeValue == dest) {
+			if(rem.val == dest) {
 				// return rem.dist as this will be the  minimum distance to dest from src. Or Do something with it.
 			}
 			
-			visited[rem.nodeValue] = true;
+			visited[rem.val] = true;
 			
-			for(Node nbr : graph.get(rem.nodeValue)) {
-				if(visited[nbr.value] == false) {
-					pq.add(new Pair(rem.dist + nbr.wt, nbr.value));
+			for(Node nbr : graph.get(rem.val)) {
+				if(visited[nbr.val] == false) {
+					pq.add(new Pair(rem.dist + nbr.wt, nbr.val));
 				}
 			}
 			
