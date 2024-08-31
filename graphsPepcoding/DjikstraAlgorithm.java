@@ -12,7 +12,7 @@ public class DjikstraAlgorithm {
 	static class Pair implements Comparable<Pair>{
 		int dist;
 		int val;
-		Pair(int dist, int val){this.dist = dist; this.val = val;}
+		Pair(int dist, int val){this.dist = dist; this.val = val;} // It should be dist so we can differentiate with wt and dist.
 		public int compareTo(Pair p) {
 			return this.dist - p.dist;
 		}
@@ -25,6 +25,7 @@ public class DjikstraAlgorithm {
 		 int src = 0;
 		 int dest = n-1;
 		 int[] minDistWithEachNode = djikstra(n,src,dest,arr);
+		 djikstraUsingVisited(n,src,dest,arr);
 		 for(int i = 0 ; i < minDistWithEachNode.length ;i++) {
 			 System.out.println("Min distance of src "+src+" with node "+i+" is "+minDistWithEachNode[i]);
 		 }
@@ -73,7 +74,6 @@ public class DjikstraAlgorithm {
 		
 		boolean[] visited = new boolean[n];
 		
-		visited[src] = true;
 		
 		PriorityQueue<Pair> pq = new PriorityQueue<>();
 		pq.add(new Pair(0, src));
@@ -86,6 +86,7 @@ public class DjikstraAlgorithm {
 			
 			// Here rem.dist will tell us the shortest path to rem.nodeValue. We can do whatever we want with it.
 			if(rem.val == dest) {
+				System.out.println(rem.dist);
 				// return rem.dist as this will be the  minimum distance to dest from src. Or Do something with it.
 			}
 			
@@ -147,9 +148,17 @@ public class DjikstraAlgorithm {
 		}
 		stack.add(curr);
 	}
+
+
+	
+
 }
 
 //Time complexity for djikstraForDAG is O( N + M ) where N is no of nodes and m is no of edges
+
+// Time complexity for djikstraWithDist is O(V+E)logV
+
+// Time complexity for djikstraUsingVisited is 
 
 
 ///////  IN GRAPH NODE, NODE_WT DENOTES weight OF EDGE BETWEEN THE RESPECTIVE INDEX(PARENT) AND NODE_VALUE. 
