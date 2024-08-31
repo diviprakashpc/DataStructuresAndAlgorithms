@@ -51,7 +51,7 @@ public class DjikstraAlgorithm {
 			int distance = p.dist;
 			int nodeValue = p.val;
 			for(Node nbr : graph.get(nodeValue)) {
-				if(dist[nbr.val]> distance + nbr.wt) {
+				if((dist[nbr.val]> distance + nbr.wt) && distance != Integer.MAX_VALUE) {
 					dist[nbr.val] = distance + nbr.wt;
 					pq.add(new Pair(dist[nbr.val],nbr.val));
 				}
@@ -60,7 +60,7 @@ public class DjikstraAlgorithm {
 		return dist;
 	}
 	// Djikstra Without Dist array and only using visited array.
-	public void djikstraUsingVisited(int n , int src, int dest, int[][] edges) {
+	public static void djikstraUsingVisited(int n , int src, int dest, int[][] edges) {
 		List<List<Node>> graph = new ArrayList<>();
 		for(int i = 0 ; i < n ; i++) graph.add(new ArrayList<>());
 		for(int[] row: edges) {
@@ -99,7 +99,54 @@ public class DjikstraAlgorithm {
 			
 		}
 	}
-
+	
+	public static int[] djikstraForDAG(int n, int src, int dest, int[][] edges) {
+		// There is no use of dest for now.
+		List<List<Node>> graph = new ArrayList<>();
+		for(int i = 0 ; i < n ; i++) graph.add(new ArrayList<>());
+		for(int[] row: edges) {
+			int u = row[0];
+			int v = row[1];
+			int wt = row[2];
+			graph.get(u).add(new Node(v,wt));
+		}
+		int[] dist = new int[n];
+		boolean[] vis = new boolean[n]; // Required for topo sort;
+		Stack<Integer> stack = new Stack<>(); // Stack Cannot store node. Because Node have NODE_WT that need a respective parent.
+		for (int i = 0; i < n; i++) {
+		      if (vis[i] == false) {
+		        topoSort(i, graph, stack, vis);
+		      }
+		}
+		Arrays.fill(dist, Integer.MAX_VALUE);
+		dist[src] = 0;
+		
+		while(!stack.isEmpty()) {
+			Integer rem  = stack.pop();
+			for(Node nbr : graph.get(rem)) {	
+				if((dist[nbr.val] > dist[rem] + nbr.wt) && dist[rem] != Integer.MAX_VALUE) {
+					// This second check is added because since toposort disturbs the ordering , 
+					//it is possible we pop the node whose distance still needs to be calculated.
+					// In earlier cases we used to visit parent then its childs.(From Queue / PriorityQueue)
+					// Here we topo sorted so ordering in the stack got changed hence we dont know if a node is removed then next nodes are its child or not.
+					dist[nbr.val] = dist[rem] + nbr.wt;
+				}
+			}
+		}
+		
+		return dist;
+	}
+	
+	public static void topoSort(int curr, List<List<Node>> graph, Stack<Integer> stack, boolean[] visited) {
+		if(visited[curr]) return;
+		visited[curr] = true;
+		for(Node nbr : graph.get(curr)) {
+			if(visited[nbr.val] == false) {
+				topoSort(nbr.val, graph, stack, visited);
+			}
+		}
+		stack.add(curr);
+	}
 }
 
 
