@@ -79,7 +79,37 @@ public class CycleDetectionInGraph {
 		}
 		return false;
 	}
+	
+	public static boolean detectCycleWithBfsMine(ArrayList<ArrayList<Integer>> graph, int src, int n) {
+		// Validated on gfg question Undirected Graph Cycle
 
+		boolean[] visited = new boolean[n];
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{src,-1});
+        while(q.size() > 0){
+            int[] rem = q.remove();
+            int val = rem[0];
+            int par = rem[1];
+            if(visited[val] == true){
+                return true;  // cycle detected
+                // If a already visited node is again visited.
+                // Since we are making sure that only unvisited child are added in the queue
+                // IF a node is removed from queue that is already visited, it simply means 
+                // That it was child of two people both at same level and they both added it.
+                // First time it got removed and marked visited, second time cycle got detected with bfs
+            }
+            visited[val] = true;
+        
+            for(Integer nbr : graph.get(val)){
+            	// Here also already visited node is again visited but this is different.
+            	// Here we add those child that are not visited.
+                  if(!visited[nbr]) q.add(new int[]{nbr, val});
+            }
+        }
+        
+        return false;
+	}
+	
 	public static boolean detectCycleWithDFS(ArrayList<ArrayList<Integer>> graph, int src, boolean[] visited,
 			int parent) {
 
