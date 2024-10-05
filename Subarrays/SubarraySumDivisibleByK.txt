@@ -1,0 +1,138 @@
+This way of solving question is intutive. Reading might not completely make you understand the solution. You have to implement it by your own once. Dry run and then Do it.
+
+This patter is followed by Three quesitions here, 
+1 ) Subarray sum equals k . ( This will teach how using hashamps and prefix sum we 
+2 ) Subarray sum divisble by k ( This will make use of hashmaps and prefix sum, but also remainders. Why ? will tell )
+3 ) Make sum divisbile by k
+
+
+=============== Subarray sum equals k  : ========================================
+Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
+
+A subarray is a contiguous non-empty sequence of elements within an array.
+
+ 
+
+Example 1:
+
+Input: nums = [1,1,1], k = 2
+Output: 2
+Example 2:
+
+Input: nums = [1,2,3], k = 3
+Output: 2
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+       Map<Integer,Integer> map = new HashMap<>();
+       int ps = 0;
+       int cnt = 0;
+       for(int i = 0 ; i < nums.length ; i++){
+            ps+=nums[i];
+            if(ps == k) ++cnt;
+            int toFind  = ps - k;
+            cnt+=(map.getOrDefault(toFind,0));
+            map.put(ps, map.getOrDefault(ps, 0) + 1);
+       }
+
+        return cnt;
+       
+    }
+}
+
+
+Simple Solution. 
+If a current prefix sum is equal to k, then definetly one subarray is found
+If we find a prefix sum which is equal to current prefix sum - k . Then definetly the subarray between both prefix sums has a sum k . And hence we increment count. 
+
+
+==================== Subarray sum divisble by k ===========================
+
+Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.
+
+A subarray is a contiguous part of an array.
+
+ 
+
+Example 1:
+
+Input: nums = [4,5,0,-2,-3,1], k = 5
+Output: 7
+Explanation: There are 7 subarrays with a sum divisible by k = 5:
+[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]
+Example 2:
+
+Input: nums = [5], k = 9
+Output: 0
+
+
+class Solution {
+    public int subarraysDivByK(int[] nums, int k) {
+        Map<Integer,Integer> map = new HashMap<>();
+        int ps  = 0;
+        int cnt = 0;
+        for(int i = 0 ; i < nums.length ; i++){
+            ps+=nums[i];
+            int rem = (ps%k + k) % k;
+            if(rem % k == 0) ++cnt;
+            cnt+=map.getOrDefault(rem,0);
+            map.put(rem, map.getOrDefault(rem, 0) + 1);
+        }
+
+        return cnt;
+    }
+}
+
+Explanation : 
+- First read some knowledge of remainders and element trimming from hashmaps-> Check if Array Pairs are Divisible by K.
+
+Now, 
+
+1) Now from subarray sum eqauls k , we know we need to find relation between current and existing prefix sums and increment count based on that. In that question we said toFind(some existing ps) =  currentPs - k.
+2) Here we have to check for divisibility. 
+Therfore, 
+If (currentPs - someExistingPs)%k == 0  at some idx j and i,
+then we say a subarray has been found whoose sum is divisible by k and lies between [i+1 to j].
+
+But how will we find someExistingPs(Will denote ePs from now) whoom if we take and do cPs-ePs, it will comes as divisble of K. 
+We dont know what to find.
+
+We can backloop and find , but that makes o(n^2) complexity. 
+
+What do we do?
+Suppose k = 5.
+Suppose ePs = 43 and cPs = 71, how do we know that summation between them is divisble by 5.
+We right now have 73. How do we find 43 ??? 
+Answer is we cant. There is a huge spectrum of possible values that can give subtraction of cps - eps as multiple of k.
+
+What if we reduce the spectrum.
+Can we say if,
+( cPs - ePs ) % k == 0 then
+(cPs %k - ePs %k ) %k == 0 is also zero.
+
+So,
+
+( 73 % 5 - x)%5 = 0, since we need to find x ie some previous prefix sum and relation of it with cPs here 75.
+
+(4 - x ) % 5 =  0
+ 
+ For this to be zero, we know x is in range [0, k-1] since we did modulo. x must and must be equal to 4.
+ 
+ Therfore, ePs%k must be equal to cPs%k for cPs - ePs to be divisble by k and thereafter subarray sum between them to be divisble by k.
+ 
+ 
+ So we have found the relaion.
+ 
+ currentPrefixSum % k must be equal to existingPrefixSum %k.
+ 
+ We store prefixSum % k in hashmap.
+ 
+ And for a new prefix Sum , we check if its module is present in map. If yes. We add its frequency to answer and we also put the currentPrefixSum % modulo into map with increased frequencey by 1.
+ 
+ 
+ In this way we get the answer. 
+ 
+ If currentPrefixSum modulo k is zero then that is also one answer.
+ 
+ 
+

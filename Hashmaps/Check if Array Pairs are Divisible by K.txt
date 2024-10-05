@@ -1,0 +1,140 @@
+Given an array of integers arr of even length n and an integer k.
+
+We want to divide the array into exactly n / 2 pairs such that the sum of each pair is divisible by k.
+
+Return true If you can find a way to do that or false otherwise.
+
+ 
+
+Example 1:
+
+Input: arr = [1,2,3,4,5,10,6,7,8,9], k = 5
+Output: true
+Explanation: Pairs are (1,9),(2,8),(3,7),(4,6) and (5,10).
+Example 2:
+
+Input: arr = [1,2,3,4,5,6], k = 7
+Output: true
+Explanation: Pairs are (1,6),(2,5) and(3,4).
+Example 3:
+
+Input: arr = [1,2,3,4,5,6], k = 10
+Output: false
+Explanation: You can try all possible pairs to see that there is no way to divide arr into 3 pairs each with sum divisible by 10.
+ 
+
+Constraints:
+
+arr.length == n
+1 <= n <= 105
+n is even.
+-109 <= arr[i] <= 109
+1 <= k <= 105
+
+
+
+
+Solution : 
+
+class Solution {
+    public boolean canArrange(int[] arr, int k) {
+        // Map<Integer,Integer> map = new HashMap<>();
+        int[] freq = new int[k];
+        for(int i = 0 ; i < arr.length ; i++){
+            int x = (arr[i] % k + k)%k;
+            freq[x]++;
+        }
+        if(freq[0] % 2 != 0) return false;
+
+        for(int rem = 1 ; rem <= k / 2 ; rem++){
+            int counterPart = k - rem;
+            if(freq[rem] != freq[counterPart]) return false;
+        }
+
+
+        return true;
+    }
+}
+
+// I coudldn't know why map approach was not working . Still dont know couldnt figure out.
+
+
+
+
+Explanation : 
+
+=> We are going for remainder because 
+i ) We cannot use n^2 approach to check if a pair is multiple of k or not.
+ii ) For O(n) approach we need to find a second element for a first element . Then what element should we find. There is a long possibility of second element that can get added to first element to create a result which is multiple of k.
+iii ) Threfore we go for remainder. So for a first element we only search element that can either make k or 0 with it, as we are trimming down the multiples of k from each element.
+
+(a + b) %k  =( a % k + b % k ) % k
+
+https://www.youtube.com/watch?v=BvKv-118twg
+
+For, 
+(x + y) % k We can write as,
+
+(m1k + r1 + m2*k + r2) % k
+
+
+Therefore for this to be divisible by k , r1 + r2 should be divisible by k.
+
+Therefore first we apply loop and for each element we modulo it by k and convert it into the remainder.  In this way the numbers also come in range of [0 , k-1).
+
+Iterate over a array now,
+For a number r1, we need to find k - r1 and check if their frequencies are equal. ( Since r1 and r2 will be in range [0 -> k - 1) now and we need to make r1 + r1 divisble by k).
+
+(r1 and r2 will be in range from 0 to k -1 . )
+(Since r1 lies between 0 to k - 1, r2 = k - r1 will also lie in this range. And both sum will be equal to k.)
+
+Since both lie in 0 to k - 1 range , we just need to check if summation of both is 0 or k. There some cannot be some multiple of k other than 1 * k. It cannot be 2 * k or 3 * k ..... Because we have taken remainder which will remove the multiplier.
+
+Example, 
+
+77 , 22 , 56 , 20 , 30 , 40 ,  11 , 45 , 34 , 78 , 29 , 23 , 55  and k = 10
+
+                    Can be simplified to 
+
+7 , 2, 6 , 0 , 0 , 0  ,  1 , 5 , 34  , 8 , 9 , 3 , 5
+
+
+So for 7 now we find if 3 is present with same frequency as 7. 
+We do same for rest of the elements. Like for 2 we find if 8 is there.
+
+For element whose k - element are equal to element,  we find if there frequencies are even, if yes, then only pairs can be found.
+
+
+
+
+Explanation for  rem = (arr[i] % k + k ) % k
+
+Dividend = ( k * divisor ) + remainder.
+
+Take this example :
+4 divided by 2 .
+So,
+4 = ( 2*2 ) + 0.
+Similarly , 9 = (2*4) + 1 ( 1 is remainder).
+
+But in case of negative numbers,
+
+Let's say, we want remainder when -2 is divided by 5 i.e ., -2 /5 .
+So, in the same way,
+-2 = (5 * -1 ) + 3.
+Here remainder is 3 , which is same as 
+( -2 + 5 )  = 3%5 = 3.
+
+So, whenever you get a negative number, add the divisor then you calculate the remainder.
+( Remainder, I think by definition cannot be less than 0,
+You can surely google for that)
+
+
+
+THIS IS A VERY IMPORTANT CONCEPT AND CAN BE USED TO SOLVE QUESTIONS LIKE,
+- Subaaray sum divisble by K. 
+
+
+
+
+

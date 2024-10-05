@@ -41,6 +41,8 @@ public class Partition {
 				j++;
 			}
 		}
+		
+//		return j - 1 ; This is the pivot index.
 	}
 
 	// I prefer count method
