@@ -2,6 +2,7 @@ This way of solving question is intutive. Reading might not completely make you 
 
 HINT FOR SUCH QUESTIONS IS KEYWORD LIKE SUBARRAY , DIVISIBLE .
 
+
 This patter is followed by Three quesitions here, 
 1 ) Subarray sum equals k . ( This will teach how using hashamps and prefix sum we 
 2 ) Subarray sum divisble by k ( This will make use of hashmaps and prefix sum, but also remainders. Why ? will tell )
