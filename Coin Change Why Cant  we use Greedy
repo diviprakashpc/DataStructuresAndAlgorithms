@@ -1,0 +1,60 @@
+Why in this problem can't use greedy ? 
+
+You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
+
+Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+
+You may assume that you have an infinite number of each kind of coin.
+
+ 
+
+Example 1:
+
+Input: coins = [1,2,5], amount = 11
+Output: 3
+Explanation: 11 = 5 + 5 + 1
+Example 2:
+
+
+
+
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        dp[0]=0;
+        for(int i = 1; i < dp.length ; i++){
+            dp[i] = Integer.MAX_VALUE;
+        }
+        for(int i = 1 ; i < dp.length ; i++){
+         
+            for(int coin : coins){
+                if(coin<=i){
+                     int ways = dp[i-coin];
+                   dp[i] = (ways!=Integer.MAX_VALUE)?Math.min(1+ways,dp[i]):dp[i];
+                }
+               
+           }
+            
+        }
+        
+        return (dp[dp.length-1]==Integer.MAX_VALUE) ? -1 : dp[dp.length-1];
+        
+      
+    }
+}
+
+// However, greedy algorithms don't always work for this problem because they don't guarantee the fewest number of coins in all cases. Let's understand why greedy fails by considering an example and examining the problem's nature.
+
+// Example where Greedy fails:
+// Suppose you have coins of denominations 1, 3, and 4, and you want to make the amount 6.
+
+// A greedy approach would start by picking the largest denomination possible, which is 4.
+// After picking 4, you're left with an amount of 6 - 4 = 2.
+// The largest coin less than or equal to 2 is 1, so you pick two 1 coins.
+// In total, you would have used three coins: one 4 and two 1s.
+// But the optimal solution is to use two coins: two 3 coins. The greedy approach misses this because it only makes local decisions (picking the largest coin at each step) without considering how that decision might affect the total outcome.
+
+// Why Greedy Fails:
+// Locally Optimal Choices Are Not Globally Optimal: The greedy strategy always chooses the largest coin first, but this doesn't always lead to the fewest coins. In the example, choosing the largest denomination (4) immediately led to a suboptimal solution because it left a remainder (2) that required more coins than necessary.
+
+// Overlooking Combinations: A greedy approach doesn't explore all possible combinations of coins to find the minimum. Instead, it picks coins as it goes, which can overlook smaller combinations of coins that would yield fewer total coins (like two 3 coins in the example).

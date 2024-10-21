@@ -18,7 +18,7 @@ import java.util.*;
 //
 //1<=s.length<=100 s consists only of uppercase English letters.
 
-public class MinimumStringLengthAfterRemovingSubstrings {
+public class s {
     public int minLength(String s) {
         Stack<Character> st = new Stack<>();
         if(s.length() == 1) return 1;
